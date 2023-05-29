@@ -1,5 +1,8 @@
 package programmer.zaman.now.data;
 
+import programmer.zaman.now.annotation.Fancy;
+
+@Fancy(name="Ahmad", tags = {"Belajar", "OOP", "Java"})
 public class Category {
     private String name;
 
