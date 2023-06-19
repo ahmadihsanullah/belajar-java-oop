@@ -1,28 +1,22 @@
+import javax.sound.midi.Soundbank;
+import java.util.Arrays;
+
 public class ArrayReverse {
     public static void main(String[] args) {
         String[] data = {
-                "h", "e", "l", "l", "o"
+                "halo", "hanif"
         };
         System.out.println("Sebelum di reverse");
-        for(var value : data){
-            System.out.println(value);
-        }
+        System.out.println(Arrays.toString(data));
         System.out.println("Setelah di reverse");
-        reverseArray(data);
+        System.out.println(Arrays.toString(reverseArray(data)));
     }
 
     static String[] reverseArray(String[] data){
-        var pointer1 = 0;
-        var pointer2 = data.length - 1;
-        while(pointer1 < pointer2){
-            var temp = pointer1;
-            data[pointer1] = data[pointer2];
-            data[pointer2] = data[temp];
-            pointer1 += 1;
-            pointer2 -= 1;
-        }
-        for(var value : data){
-            System.out.println(value);
+        for (int i = 0; i < data.length /2 ; i++) {
+            String temp = data[i];
+            data[i] = data[data.length - i -1];
+            data[data.length - i -1] = temp;
         }
         return data;
     }

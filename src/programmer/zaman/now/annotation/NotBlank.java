@@ -7,5 +7,6 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.FIELD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
+//retention harus runtime agar dapat dibaca oleh reflection
 public @interface NotBlank {
 }

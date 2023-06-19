@@ -34,14 +34,21 @@ public class ValidationUtil {
     }
 
     public static void validateReflection(Object object){
+        //mendapatkan class
         Class aClass = object.getClass();
+
+        //mendapatkan fields dari classnya
+        //getDeclaredField => akan mendapatkan field (public ataupun private)
         Field[] fields = aClass.getDeclaredFields();
 
         for (var field : fields){
+            // status akses field harus diubah terlebih dahulu menjadi true, agar dapat diakses
             field.setAccessible(true);
+                //cari field yang memiliki annotation NotBlank
             if(field.getAnnotation(NotBlank.class) != null){
                 //validated
                 try {
+                    //simpan field kedalam variable value
                     String value = (String) field.get(object);
 
                     if(value == null || value.isBlank()){

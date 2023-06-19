@@ -16,6 +16,7 @@ public class Category {
         if(name != null){
             this.name = name;
         }
+        this.name = this.name;
     }
 
     public boolean isExpensive() {
