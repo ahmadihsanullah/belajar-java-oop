@@ -12,6 +12,9 @@ public class EqualsApp {
         System.out.println(first.equals(second));
 
         String third = "Eko Khannedy";
+        Integer satu = 1;
+        Integer satulagi = 1;
+        System.out.println(satu.equals(satulagi));
 //        System.out.println(second == third);
     }
 }

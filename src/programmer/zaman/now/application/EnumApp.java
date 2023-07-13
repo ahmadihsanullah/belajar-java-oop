@@ -22,6 +22,7 @@ public class EnumApp {
         System.out.println(nilai);
 
         //mencetak semua nilai enum
+        System.out.println("Print level");
         for(var value: Level.values()){
             System.out.println(value);
         }

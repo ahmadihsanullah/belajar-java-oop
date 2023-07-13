@@ -1,5 +1,6 @@
 package programmer.zaman.now.util;
 
+import programmer.zaman.now.annotation.MoreFiveChar;
 import programmer.zaman.now.annotation.NotBlank;
 import programmer.zaman.now.data.LoginRequest;
 import programmer.zaman.now.error.BlankException;
@@ -38,7 +39,7 @@ public class ValidationUtil {
         Class aClass = object.getClass();
 
         //mendapatkan fields dari classnya
-        //getDeclaredField => akan mendapatkan field (public ataupun private)
+        //getDeclaredFields => akan mendapatkan fields (public ataupun private)
         Field[] fields = aClass.getDeclaredFields();
 
         for (var field : fields){
@@ -54,12 +55,42 @@ public class ValidationUtil {
                     if(value == null || value.isBlank()){
                         throw new BlankException("Field " + field.getName() + " is blank");
                     }
+                }
+                //catch jika field tidak didapatkan, dari fungsi get(object)
+                catch (IllegalAccessException exception){
+                    System.out.println("Tidak bisa mengakses " + field.getName());
+                }
+            }
+        }
+    }
+
+    public static void validationReflectionMoreFiveChar(Object object)
+    {
+        //dapatkan class
+        Class aClass = object.getClass();
+
+        //dapatkan field
+        Field[] fields= aClass.getDeclaredFields();
+
+        //loop fields
+        for (var field : fields){
+            //status akses field harus diubah terlebih dahulu menjadi true, agar dapat diakses
+            field.setAccessible(true);
+            if(field.getAnnotation(MoreFiveChar.class) != null){
+                //validated
+                try {
+                    //simpan field kedalam variable value
+                    String value = (String) field.get(object);
+                   if((value.length() < 5)){
+                       throw new RuntimeException("Field " + field.getName() + " has more than (min 5 characters)");
+                   }
                 }catch (IllegalAccessException exception){
                     System.out.println("Tidak bisa mengakses " + field.getName());
                 }
             }
         }
     }
+
 
 
 }

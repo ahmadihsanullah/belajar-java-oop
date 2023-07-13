@@ -1,13 +1,14 @@
 package programmer.zaman.now.data;
 
+import programmer.zaman.now.annotation.MoreFiveChar;
 import programmer.zaman.now.annotation.NotBlank;
 
 public class CreateUserRequest {
-    @NotBlank
+    @NotBlank @MoreFiveChar
     private String username;
-    @NotBlank
+    @NotBlank @MoreFiveChar
     private String password;
-    @NotBlank
+    @NotBlank @MoreFiveChar
     private String name;
 
     public String getName() {
